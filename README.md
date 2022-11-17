@@ -6,7 +6,6 @@ However, I wanted to keep using Hyper-V driver and wanted to manage configuratio
 That's the purpose for these configurations.
 
 Then I searched workaround and I found [his post.](https://github.com/kubernetes/minikube/issues/12362#issuecomment-1034678334)
-That's the motivation of these configurations.
 
 Currently, it's just run (simple game server)[https://github.com/googleforgames/agones/tree/main/examples/simple-game-server]
 

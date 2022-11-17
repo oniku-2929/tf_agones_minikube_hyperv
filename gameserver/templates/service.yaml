@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: agones-gameserver-service
+  annotations: 
+    metallb.universe.tf/address-pool: {{ .Values.gameServer.service.annotations.metallb.addressPool }}
+    metallb.universe.tf/allow-shared-ip: {{ .Values.gameServer.service.annotations.metallb.allowSharedIP }}
+spec:
+  type: LoadBalancer
+  selector:
+    agones.dev/gameserver: {{ .Values.gameServer.containerName }}
+  loadBalancerIP: {{ .Values.gameServer.service.loadBalancerIP }}
+  ports:
+  - protocol: UDP
+    port: {{ .Values.gameServer.service.localPort }}
+    targetPort: {{ .Values.gameServer.containerPort }}

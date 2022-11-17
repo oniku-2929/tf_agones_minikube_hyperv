@@ -1,0 +1,13 @@
+metalLB:
+  enabled: true
+  apiVersion: metallb.io/v1beta1
+  namespace: metallb-system
+  addressConfig:
+    addressPool:
+      metadata:
+        name: local-address-pool
+      range: 192.168.16.30-192.168.16.60
+      autoAssign: true
+    L2Advertisement:
+      metadata:
+        name: l2-advertisement-default

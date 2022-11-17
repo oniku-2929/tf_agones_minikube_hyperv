@@ -1,0 +1,23 @@
+{{- $addressPoolName := .Values.metalLB.addressConfig.addressPool.metadata.name -}}
+{{ if .Values.metalLB.enabled }}
+---
+apiVersion: {{ .Values.metalLB.apiVersion }}
+kind: IPAddressPool
+metadata:
+  name: {{ $addressPoolName }}
+  namespace: {{ .Values.metalLB.namespace }}
+spec:
+  addresses:
+  - {{ .Values.metalLB.addressConfig.addressPool.range }}
+  autoAssign: {{ .Values.metalLB.addressConfig.addressPool.autoAssign }}
+---
+apiVersion: {{ .Values.metalLB.apiVersion }}
+kind: L2Advertisement
+metadata:
+  name: {{ .Values.metalLB.addressConfig.L2Advertisement.metadata.name }}
+  namespace: {{ .Values.metalLB.namespace }}
+spec:
+  ipAddressPools:
+  - {{ $addressPoolName }}
+
+{{ end }}

@@ -1,0 +1,15 @@
+apiVersion: v2
+appVersion: "0.0.0-dev"
+version: 0.0.0-dev
+name: metallb-minikube
+description: For Making MetaLB on Minikube.
+type: application
+
+#To be honest, I think I should define my IPAddressPool and L2Advertisement definitions with metalLB SubChart.
+#However, Helm can't handle post dependencies to use CRD, so I split both definitions on to another Chart.
+#see https://github.com/helm/helm/issues/11422
+#dependencies:
+#  - name: metallb
+#    version: 0.13.6
+#    repository: https://metallb.github.io/metallb
+#    condition: metalLB.enabled

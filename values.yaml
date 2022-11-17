@@ -1,0 +1,32 @@
+agonesApiVersion: "agones.dev/v1"
+gameservers:
+  namespaces:
+    - default
+    - agones-gs
+
+gameServer:
+  containerName: simple-game-server
+  image: gcr.io/agones-images/simple-game-server
+  imageTag: 0.13
+  containerPort: 7654
+  service:
+    localPort: 0
+    loadBalancerIP: 127.0.0.1
+    annotations:
+      metallb:
+        addressPool: dummy-ip-pool
+        allowSharedIP: dummy
+
+metalLB:
+  enabled: true
+  apiVersion: metallb.io/v1beta1
+  namespace: metallb-system
+  addressConfig:
+    addressPool:
+      metadata:
+        name: local-address-pool
+      range: 192.168.16.30-192.168.16.60
+      autoAssign: true
+    L2Advertisement:
+      metadata:
+        name: l2-advertisement-default

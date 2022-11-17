@@ -1,0 +1,7 @@
+helm_agones
+helm_metallb_minikube/charts
+
+.terraform
+terraform.tfstate*
+
+.DS_Store
